@@ -14,7 +14,7 @@
 
 ## System requirements
 
-- Python 3.x (might work with v2 - haven't tested it...)
+- Python 3.x, 2.7.x
 
 
 ## Releases & Changelog
