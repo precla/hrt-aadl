@@ -62,7 +62,7 @@ def grab_file(link, dl_dir):
     response_download = response_download.text
 
     # find track title
-    regexcheck = re.compile(r"track-title\">([\w\s]+)", re.UNICODE)
+    regexcheck = re.compile(r"track-title\">([\w\s\-]+)", re.UNICODE)
     track_title = list(set(regexcheck.findall(response_download)))
 
     # find the link for the *.mp3
