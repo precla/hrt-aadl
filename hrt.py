@@ -12,7 +12,7 @@ PARSER.add_argument('-u', metavar='URL', type=str, required=True,
                     help="url for example: http://radio.hrt.hr/emisija/govorimo-hrvatski/200/")
 PARSER.add_argument('-d', metavar='DIRECTORY', type=str, required=False,
                     help="set destination directory, default is current directory of this .py file")
-PARSER.add_argument('-v', '--version', action="version", version="%(prog)s 0.1.1")
+PARSER.add_argument('-v', '--version', action="version", version="%(prog)s 0.1.2")
 # Todo: make it possible to dl only a specified amount:
 # PARSER.add_argument('-n', type=int, help="number of files to download", default=0, required=False)
 
