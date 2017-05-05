@@ -22,7 +22,7 @@ def main():
     args = PARSER.parse_args()
 
     # just a quick check to see if the user provided an acceptable link
-    if r"http://radio.hrt.hr/arhiva/" in args.u or r"http://radio.hrt.hr/emisija/" in args.u:
+    if r"http://radio.hrt.hr/arhiva/" in args.u or r"http://radio.hrt.hr/emisija/" in args.u or r"http://radio.hrt.hr/ep/" in args.u:
         response_hrt = requests.get(args.u)
         response_hrt = response_hrt.text
     else:
@@ -31,10 +31,15 @@ def main():
 
     # Exclude 'Najave' (engl.: upcoming), beacuse those don't have a dl link
     # "col-md-8" - /arhiva/ , "col-sm-8" - /emisija/
+    # if it is a link to a singel ep only, than dl that one directly and exit
     if r"http://radio.hrt.hr/arhiva/" in args.u:
         response_hrt = response_hrt[response_hrt.find("col-md-8") + 8: response_hrt.find("col-sm-4 side-widgets")]
     elif r"http://radio.hrt.hr/emisija/" in args.u:
         response_hrt = response_hrt[response_hrt.find("col-sm-8") + 8 : response_hrt.find("col-sm-4 side-widgets")]
+    elif r"http://radio.hrt.hr/ep/" in args.u:
+        link = args.u[19:]
+        grab_file(link, args.d)
+        return
 
     # prepare regex for /ep/dogodilo-se-na-danasnji-dan-24-04/201535/ and similiar
     regexcheck = re.compile(r"/ep/\S+/\"")
