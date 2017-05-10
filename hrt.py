@@ -8,8 +8,8 @@ from bs4 import BeautifulSoup
 from slugify import slugify
 from tqdm import tqdm
 
+# arguments parser:
 PARSER = argparse.ArgumentParser(description='Download audio files from radio archive of HRT.')
-
 PARSER.add_argument('-u', metavar='URL', type=str, required=True,
                     help="url for example: http://radio.hrt.hr/emisija/govorimo-hrvatski/200/")
 PARSER.add_argument('-d', metavar='DIRECTORY', type=str, required=False,
