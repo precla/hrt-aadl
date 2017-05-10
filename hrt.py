@@ -6,6 +6,7 @@ import os
 import requests
 from bs4 import BeautifulSoup
 from slugify import slugify
+from tqdm import tqdm
 
 PARSER = argparse.ArgumentParser(description='Download audio files from radio archive of HRT.')
 
@@ -97,9 +98,10 @@ def grab_file(link, title, dl_dir):
 
     print("Downloading: '" + title + "'")
 
-    response_download = requests.get(mp3_link)
-    with open(dl_dir + track_title[0] + ".mp3", 'wb') as file_dl:
-        file_dl.write(response_download.content)
+   # fire up the progress bar with tqdm
+    with open(dl_dir + track_title + ".mp3", "wb") as file_dl:
+        for data in tqdm(response_download.iter_content(32*1024), total=f_size, unit='chunk', unit_scale=True):
+            file_dl.write(data)
 
 if __name__ == "__main__":
     main()
